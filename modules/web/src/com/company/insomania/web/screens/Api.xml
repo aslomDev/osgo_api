@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://api.caption"
+        messagesPack="com.company.insomania.web.screens">
+
+    <dialogMode height="600"
+                width="800"/>
+    <actions>
+        <action id="generateRequest" caption="msg://generateRequest"/>
+        <action id="sendRequest" caption="msg://sendRequest"/>
+        <action id="close" caption="msg://close"/>
+    </actions>
+
+    <layout expand="editActions" spacing="true">
+        <flowBox spacing="true" margin="true">
+            <form id="form">
+                <column width="450px">
+                    <form id="requestForm">
+                    </form>
+                </column>
+            </form>
+
+            <form id="form2">
+                <column width="450px">
+                    <sourceCodeEditor  id="requestField" height="220px" caption="msg://request"
+                                       handleTabKey="true" highlightActiveLine="true" mode="JavaScript" printMargin="false"
+                                       showGutter="true"/>
+                    <textField id="responseCodeField" caption="msg://responseCode" editable="false"/>
+                    <sourceCodeEditor  id="responseField" height="220px" caption="msg://response"
+                                       handleTabKey="true" highlightActiveLine="true" mode="JavaScript" printMargin="false"
+                                       showGutter="true" editable="false"/>
+                </column>
+            </form>
+        </flowBox>
+        <hbox id="editActions" spacing="true">
+            <button action="generateRequest"/>
+            <button action="sendRequest"/>
+            <button action="close"/>
+        </hbox>
+
+    </layout>
+    <facets>
+        <notification id="notification"
+                      caption="msg://error"
+                      description="msg://methodNotFind"
+                      type="WARNING"/>
+    </facets>
+</window>

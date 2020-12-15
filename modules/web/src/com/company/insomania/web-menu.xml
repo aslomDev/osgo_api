@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
+    <menu id="application-insomania" insertBefore="administration" caption="mainMsg://menu_config.application-insomania">
+        <item screen="insomania_" caption="mainMsg://menu_config.insomania_"/>
+        <item screen="insomania_Api"/>
+        <item screen="insomania_Settings.browse"/>
+    </menu>
+</menu-config>
