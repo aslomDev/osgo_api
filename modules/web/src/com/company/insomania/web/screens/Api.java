@@ -38,6 +38,8 @@ public class Api extends Screen {
     private CollectionContainer<Method> methodsDc;
     @Inject
     private NotificationFacet notification;
+    @Inject
+    private TextField<String> responseLoadTime;
 
 
     @Subscribe
@@ -69,6 +71,8 @@ public class Api extends Screen {
         if (rr.getResponseCode()!=null && rr.getResponse()!=null) {
             responseCodeField.setValue(rr.getResponseCode().toString());
             responseField.setValue(rr.getResponse());
+            responseLoadTime.setValue(String.valueOf(rr.getResponseLoadTime() + " milliseconds"));
+
         }
     }
 

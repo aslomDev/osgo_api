@@ -10,6 +10,7 @@ import com.haulmont.cuba.core.Transaction;
 import com.haulmont.cuba.core.TypedQuery;
 import com.haulmont.cuba.core.global.Metadata;
 import com.haulmont.cuba.core.global.TimeSource;
+import org.apache.commons.lang3.time.StopWatch;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.http.HttpHeaders;
@@ -109,6 +110,10 @@ public class ApiServiceBean implements ApiService {
             URI subUri = targetUrl.toURI();
             subUri = subUri.resolve(subUrl);
             targetUrl = subUri.toURL();
+
+            StopWatch resLoad = new StopWatch();
+            resLoad.start();
+
             HttpURLConnection httpConnection =
                     (HttpURLConnection) Objects.requireNonNull(targetUrl).openConnection();
             httpConnection.setDoOutput(true);
@@ -118,6 +123,9 @@ public class ApiServiceBean implements ApiService {
             httpConnection.setRequestProperty("Authorization", "Bearer " + tokenConfig.getToken());
             System.out.println("URL " + httpConnection.getURL());
 
+
+            resLoad.stop();
+            long resLoadTime_ms = resLoad.getTime();
 
             JSONObject jo = new JSONObject(param);
             param = jo.toString(4);
@@ -143,6 +151,7 @@ public class ApiServiceBean implements ApiService {
                 String res = String.valueOf((new JSONObject(responseBuffer.readLine()).toString(10)));
                 requestResult.setResponseCode(httpConnection.getResponseCode());
                 requestResult.setResponse(res);
+                requestResult.setResponseLoadTime(resLoadTime_ms);
             }
             httpConnection.disconnect();
         } catch (IOException e) {

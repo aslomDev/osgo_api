@@ -13,10 +13,5 @@ public interface TokenConfig extends Config {
 
     void setToken(String token);
 
-    @Property("osgo.token")
-    @Default("")
-    String getTokenTest();
-
-    void setTokenTest(String token);
 
 }

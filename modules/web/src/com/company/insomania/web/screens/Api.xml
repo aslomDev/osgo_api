@@ -66,6 +66,7 @@
                     <sourceCodeEditor  id="responseField" height="220px" caption="msg://response"
                                        handleTabKey="true" highlightActiveLine="true" mode="JavaScript" printMargin="false"
                                        showGutter="true" editable="false"/>
+                    <textField id="responseLoadTime" caption="msg://responseLoad" editable="false"/>
                 </column>
             </form>
         </flowBox>
