@@ -123,8 +123,6 @@ public class ApiServiceBean implements ApiService {
             httpConnection.setRequestProperty("Authorization", "Bearer " + tokenConfig.getToken());
             System.out.println("URL " + httpConnection.getURL());
 
-
-            resLoad.stop();
             long resLoadTime_ms = resLoad.getTime();
 
             JSONObject jo = new JSONObject(param);
@@ -154,6 +152,7 @@ public class ApiServiceBean implements ApiService {
                 requestResult.setResponseLoadTime(resLoadTime_ms);
             }
             httpConnection.disconnect();
+            resLoad.stop();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (URISyntaxException e) {
