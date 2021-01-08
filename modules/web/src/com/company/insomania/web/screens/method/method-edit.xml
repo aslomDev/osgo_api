@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://methodEdit.caption"
+        focusComponent="form"
+        messagesPack="com.company.insomania.web.screens.method">
+    <data>
+        <instance id="methodDc"
+                  class="com.company.insomania.entity.Method">
+            <view extends="_local">
+                <property name="module" view="_minimal"/>
+            </view>
+            <loader/>
+        </instance>
+        <collection id="modulesDc" class="com.company.insomania.entity.Module" view="_minimal">
+            <loader id="modulesDl">
+                <query>
+                    <![CDATA[select e from insomania_Module e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="methodDc">
+            <column width="350px">
+                <lookupPickerField id="moduleField" optionsContainer="modulesDc" property="module"/>
+                <textField id="nameField" property="name"/>
+                <textField id="descriptionField" property="description"/>
+                <lookupField id="requestTypeField" property="requestType"/>
+                <textField id="requestUrlField" property="requestUrl"/>
+                <textArea id="request_contentField" property="request_content" rows="5"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://methodBrowse.caption"
+        focusComponent="methodsTable"
+        messagesPack="com.company.insomania.web.screens.method">
+    <data readOnly="true">
+        <collection id="methodsDc"
+                    class="com.company.insomania.entity.Method">
+            <view extends="_local">
+                <property name="module" view="_minimal"/>
+            </view>
+            <loader id="methodsDl">
+                <query>
+                    <![CDATA[select e from insomania_Method e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="methodsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="methodsTable"
+                dataLoader="methodsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="methodsTable"
+                    width="100%"
+                    dataContainer="methodsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+                <action id="excel" type="excel"/>
+            </actions>
+            <columns>
+                <column id="module"/>
+                <column id="name"/>
+                <column id="description"/>
+                <column id="requestType"/>
+                <column id="requestUrl"/>
+                <column id="request_content"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="methodsTable.create"/>
+                <button id="editBtn" action="methodsTable.edit"/>
+                <button id="removeBtn" action="methodsTable.remove"/>
+                <button id="excelBtn" action="methodsTable.excel"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

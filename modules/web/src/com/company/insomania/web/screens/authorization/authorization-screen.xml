@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://authorizationScreen.caption"
+        messagesPack="com.company.insomania.web.screens.authorization">
+    <dialogMode height="600"
+                width="800"/>
+    <actions>
+        <action id="auth" caption="msg://auth"/>
+        <action id="close" caption="msg://close"/>
+    </actions>
+    <layout>
+        <flowBox spacing="true" margin="true">
+            <form id="form" >
+                <column width="450px">
+                    <textField id="responseCodeField" caption="msg://responseCode" editable="false"/>
+                    <sourceCodeEditor  id="responseField" height="220px" caption="msg://response"
+                                       handleTabKey="true" highlightActiveLine="true" mode="JavaScript" printMargin="false"
+                                       showGutter="true" editable="false"/>
+                </column>
+            </form>
+        </flowBox>
+
+
+        <hbox id="authActions" spacing="true">
+            <button action="auth"/>
+            <button action="close"/>
+        </hbox>
+    </layout>
+</window>

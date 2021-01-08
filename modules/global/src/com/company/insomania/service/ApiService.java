@@ -12,6 +12,7 @@ public interface ApiService {
     RequestResult sendToProvider()
             throws NoSuchAlgorithmException, KeyManagementException;
 
-    String createrequest();
+    RequestResult createrequest(String subUrl, String requestType, String param);
+
 
 }

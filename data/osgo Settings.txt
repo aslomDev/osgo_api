@@ -1,0 +1,43 @@
+//// Настройка
+
+INSERT INTO insomania_Settings(id, name, value) VALUES('1', 'URL', 'http://api.e-osgo.uz');
+INSERT INTO insomania_Settings(id, name, value) VALUES('2', 'AUTH', 'http://api.e-osgo.uz/oauth/v2/token?username=temiryol&password=aIj4T1lD0Khvn0Uv411TT5B055132Lbs&grant_type=password');
+INSERT INTO insomania_Settings(id, name, value) VALUES('3', 'USERNAME', '5_529o76r9bz0ggcgg8wcoc0kococ4wc0so8o8k48k40o00080oc');
+INSERT INTO insomania_Settings(id, name, value) VALUES('4', 'PASSWORD', '4kmk6cucu2o0kcswg4k8c0s000k4koo0ws0c8w40scs8ggwc80');
+
+
+//// МОДУЛИ
+
+INSERT INTO insomania_Module(id, name, description, subUrl) VALUES('1', 'Провайдер', 'получение информации от провайдера', '/api/provider');
+
+
+//// МЕТОДЫ
+
+INSERT INTO insomania_Method(id, module_id, name, description, request_type, request_url, request_content) VALUES('1', '1', 'информацию о человеке по его ПИНФЛ', 'Получить информацию о человеке по его ПИНФЛ', 'POST', '/pinfl', '{ "pinfl": "30504720220036", "passportSeries": "AA", "passportNumber": "2048401" }');
+
+INSERT INTO insomania_Method(id, module_id, name, description, request_type, request_url, request_content) VALUES('2', '1', 'информацию о человеке по его ПИНФЛ без адреса', 'Получить информацию о человеке по его ПИНФЛ без адреса', 'POST', '/driver-summary', '{"pinfl": "30504720220036", "passportSeries": "AA", "passportNumber": "2048401" }');
+
+INSERT INTO insomania_Method(id, module_id, name, description, request_type, request_url, request_content) VALUES('3', '1', 'информацию о водительских правах по PINFL водителя без адреса', 'Получите личную информацию и информацию о водительских правах по PINFL водителя без адреса', 'POST', '/driver-summary-no-address', '{"pinfl": "30504720220036", "passportSeries": "AA", "passportNumber": "2048401"}');
+
+INSERT INTO insomania_Method(id, module_id, name, description, request_type, request_url, request_content) VALUES('4', '1', 'информации об автомобиле по данным TechPassport и GovNumber', 'Получение информации об автомобиле по данным TechPassport и GovNumber', 'POST', '/vehicle', '{"techPassportSeria": "AAC", "techPassportNumber": "6163326", "govNumber": "01097VDA"}');
+
+INSERT INTO insomania_Method(id, module_id, name, description, request_type, request_url, request_content) VALUES('5', '1', 'информацию об автомобиле по данным TechPassport и PINFL владельца автомобиля', 'Получите информацию об автомобиле по данным TechPassport и PINFL владельца автомобиля', 'POST', '/vehicle-by-tech-passport', '{"techPassportSeria": "string", "techPassportNumber": "string", "govNumber": "string"}');
+
+INSERT INTO insomania_Method(id, module_id, name, description, request_type, request_url, request_content) VALUES('6', '1', 'водительских правах по PINFL водителя', 'Получите информацию о водительских правах по PINFL водителя', 'POST', '/driver-license', '{"pinfl": "string", "passportSeries": "string", "passportNumber": "string"}');
+
+INSERT INTO insomania_Method(id, module_id, name, description, request_type, request_url, request_content) VALUES('7', '1', 'водителя по его PINFL', 'Получите коэффициент водителя по его PINFL', 'POST', '/driver-coefficient', '{
+  "pinfl": "30504720220036"
+}');
+
+INSERT INTO insomania_Method(id, module_id, name, description, request_type, request_url, request_content) VALUES('8', '1', 'информацию о негражданине по его PINFL', 'Получите информацию о негражданине по его PINFL', 'POST', '/pinfl-non-citizen', '{"pinfl": "string", "passportSeries": "string", "passportNumber": "string"}');
+
+INSERT INTO insomania_Method(id, module_id, name, description, request_type, request_url, request_content) VALUES('9', '1', 'информацию об иномарке по номеру машины', 'Получите информацию об иномарке по номеру машины', 'POST', '/gtk-vehicle', '{"govNumber": "15153"}');
+
+
+INSERT INTO insomania_Method(id, module_id, name, description, request_type, request_url, request_content) VALUES('10', '1', 'информацию об организации по ИНН', 'Получить информацию об организации по ИНН', 'POST', '/inn', '{"inn": "305053634"}');
+
+INSERT INTO insomania_Method(id, module_id, name, description, request_type, request_url, request_content) VALUES('11', '1', 'пенсионер по ПИНФЛ и паспортным данным', 'Проверить пенсионер по ПИНФЛ и паспортным данным', 'POST', '/is-pensioner', '{"pinfl": "30504720220036", "passportSeries": "AA", "passportNumber": "2048401"}');
+
+
+
+

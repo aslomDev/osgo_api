@@ -1,0 +1,11 @@
+@import "helium-defaults";
+@import "com.company.insomania/helium-ext-defaults";
+@import "app-components";
+@import "com.company.insomania/helium-ext";
+
+.helium {
+  // include auto-generated app components SCSS
+  @include app_components;
+
+  @include com_company_insomania-helium-ext;
+}

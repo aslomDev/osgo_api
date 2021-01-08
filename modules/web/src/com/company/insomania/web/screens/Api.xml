@@ -1,7 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
         caption="msg://api.caption"
+        focusComponent="form"
         messagesPack="com.company.insomania.web.screens">
+    <data readOnly="true">
+        <instance id="ApiDc"
+                  class="com.company.insomania.entity.Method">
+            <view extends="_local">
+                <property name="name" />
+            </view>
+            <loader/>
+        </instance>
+        <instance id="ApiDc1"
+                  class="com.company.insomania.entity.Module">
+            <view extends="_local">
+                <property name="name" />
+            </view>
+            <loader/>
+        </instance>
+        <collection id="modulesDc" class="com.company.insomania.entity.Module" view="_local">
+            <loader id="modulesDl">
+                <query>
+                    <![CDATA[select e from insomania_Module e]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="methodsDc" class="com.company.insomania.entity.Method" view="method-view">
+            <loader id="methodsLc">
+                <query>
+                    <![CDATA[select e from insomania_Method e where e.module=:module order by e.name ]]>
+                </query>
+            </loader>
+        </collection>
+
+
+    </data>
 
     <dialogMode height="600"
                 width="800"/>
@@ -11,10 +44,14 @@
         <action id="close" caption="msg://close"/>
     </actions>
 
-    <layout expand="editActions" spacing="true">
+    <layout spacing="true">
         <flowBox spacing="true" margin="true">
-            <form id="form">
+            <form id="form" >
                 <column width="450px">
+                    <lookupPickerField id="moduleField" optionsContainer="modulesDc"  required="true"
+                                       caption="msg://menu-config.paycom_Module.browse" />
+                    <lookupPickerField id="methodField"  optionsContainer="methodsDc" required="true"
+                                       caption="msg://menu-config.paycom_Method.browse" />
                     <form id="requestForm">
                     </form>
                 </column>
