@@ -2,18 +2,14 @@ package com.company.insomania.service;
 
 import com.company.insomania.api.RequestResult;
 import com.company.insomania.config.TokenConfig;
-import com.company.insomania.service.Serv;
 import com.company.insomania.entity.Settings;
-import com.haulmont.cuba.core.EntityManager;
 import com.haulmont.cuba.core.Persistence;
 import com.haulmont.cuba.core.Transaction;
 import com.haulmont.cuba.core.TypedQuery;
 import com.haulmont.cuba.core.global.Metadata;
 import com.haulmont.cuba.core.global.TimeSource;
 import org.apache.commons.lang3.time.StopWatch;
-import org.json.JSONArray;
 import org.json.JSONObject;
-import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -26,7 +22,6 @@ import java.nio.charset.StandardCharsets;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
@@ -43,7 +38,7 @@ public class ApiServiceBean implements ApiService {
 
 
     @Override
-    public RequestResult sendToProvider() throws NoSuchAlgorithmException, KeyManagementException {
+    public RequestResult authorization() throws NoSuchAlgorithmException, KeyManagementException {
         RequestResult requestResult = new RequestResult();
         try {
             URL targetUrl = null;
@@ -83,6 +78,7 @@ public class ApiServiceBean implements ApiService {
                 requestResult.setResponseCode(httpConnection.getResponseCode());
                 requestResult.setResponse(res);
 
+
                 // получить токен
                 String token = res.substring(68,154);
 
@@ -98,7 +94,7 @@ public class ApiServiceBean implements ApiService {
 
 
     @Override
-    public RequestResult createrequest(String subUrl, String requestType, String param) {
+    public RequestResult sendToProvider(String subUrl, String requestType, String param) {
 
         RequestResult requestResult = new RequestResult();
         try {
@@ -143,6 +139,7 @@ public class ApiServiceBean implements ApiService {
                 }
                 requestResult.setResponseCode(httpConnection.getResponseCode());
                 requestResult.setResponse(res.toString());
+                requestResult.setResponseLoadTime(resLoadTime_ms);
             } else {
                 InputStreamReader inputStreamReader = new InputStreamReader((httpConnection.getInputStream()));
                 BufferedReader responseBuffer = new BufferedReader(inputStreamReader);
@@ -151,6 +148,8 @@ public class ApiServiceBean implements ApiService {
                 requestResult.setResponse(res);
                 requestResult.setResponseLoadTime(resLoadTime_ms);
             }
+            System.out.println("ms " + resLoadTime_ms);
+
             httpConnection.disconnect();
             resLoad.stop();
         } catch (IOException e) {

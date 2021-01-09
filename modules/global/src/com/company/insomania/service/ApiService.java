@@ -9,10 +9,10 @@ import java.security.NoSuchAlgorithmException;
 public interface ApiService {
     String NAME = "insomania_ApiService";
 
-    RequestResult sendToProvider()
+    RequestResult authorization()
             throws NoSuchAlgorithmException, KeyManagementException;
 
-    RequestResult createrequest(String subUrl, String requestType, String param);
+    RequestResult sendToProvider(String subUrl, String requestType, String param);
 
 
 }

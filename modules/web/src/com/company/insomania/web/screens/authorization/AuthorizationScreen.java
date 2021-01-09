@@ -23,12 +23,14 @@ public class AuthorizationScreen extends Screen {
     private TextField<String> responseCodeField;
     @Inject
     private SourceCodeEditor responseField;
+    @Inject
+    private TextField<String> responseLoadTime;
 
     @Subscribe("auth")
     public void onAuth(Action.ActionPerformedEvent event) throws KeyManagementException, NoSuchAlgorithmException {
         responseCodeField.setValue(null);
         responseField.setValue(null);
-        RequestResult rr = apiService.sendToProvider();
+        RequestResult rr = apiService.authorization();
         if (rr.getResponseCode() != null && rr.getResponse() != null){
             responseCodeField.setValue(rr.getResponseCode().toString());
             responseField.setValue(rr.getResponse());

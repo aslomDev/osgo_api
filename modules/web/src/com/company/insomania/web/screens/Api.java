@@ -67,11 +67,13 @@ public class Api extends Screen {
             throws KeyManagementException, NoSuchAlgorithmException {
         responseCodeField.setValue(null);
         responseField.setValue(null);
-        RequestResult rr = apiService.createrequest(modulesDl.getContainer().getItem().getSubUrl()+methodsLc.getContainer().getItem().getRequestUrl(), String.valueOf(methodsLc.getContainer().getItem().getRequestType()), requestField.getValue());
+        responseLoadTime.setValue(null);
+        RequestResult rr = apiService.sendToProvider(modulesDl.getContainer().getItem().getSubUrl()+methodsLc.getContainer().getItem().getRequestUrl(), String.valueOf(methodsLc.getContainer().getItem().getRequestType()), requestField.getValue());
         if (rr.getResponseCode()!=null && rr.getResponse()!=null) {
             responseCodeField.setValue(rr.getResponseCode().toString());
             responseField.setValue(rr.getResponse());
             responseLoadTime.setValue(String.valueOf(rr.getResponseLoadTime() + " milliseconds"));
+
 
         }
     }
